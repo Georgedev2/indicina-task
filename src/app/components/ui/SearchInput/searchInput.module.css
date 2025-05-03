@@ -1,0 +1,44 @@
+.searchForm {
+  max-width: 650px;
+  width: 100%;
+  /* width: 60%; */
+  display: flex;
+  align-items: center;
+  height: var(--input-height);
+  background: #f3f2f2;
+  border-radius: 6px;
+  padding: 0px 5px;
+}
+.searchForm > svg:first-child {
+  margin: 0px 5px;
+  cursor: text;
+}
+
+.searchForm > svg:last-child,
+.searchForm > svg:first-child {
+  color: #959393;
+}
+.searchForm > svg:first-child {
+  cursor: pointer;
+}
+.searchForm input {
+  width: 100%;
+  border: none;
+  height: 100%;
+  outline: none;
+  cursor: pointer;
+  background-color: transparent; /*    the background-color: transparent; we apply here, transparent makes the background color of it parent visible  */
+  margin-left: 7px;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.close {
+  width: 20px;
+}
+
+@media (max-width: 750px) {
+  .searchForm {
+    width: 85%;
+  }
+}

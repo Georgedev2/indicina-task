@@ -1,42 +1,142 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600&family=Nunito:wght@200;300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&display=swap');
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  font-size: 16px;
+  --input-height: 40px;
+  --border-color-thick: #ddd;
+  --input-border: 1.5px solid var(--border-color-thick); /* active */
+  --border-thickness: 2px;
+  --page-width: 90%;
+  --mobile-width-1025px: 96%;
+  --text-grey-color: #666;
+  --primary-color: #0842a0;
+  --primary-color-bg-text-color: white;
+
+  /* --shadow--- */
+  --card-shadow: rgba(0, 17, 51, 0.07) 0px 3px 15px;
+
+  /*--- colors --- */
+  --error: #d30005;
+  --flag-border-color: #00113326;
+  --border-color: #eceef1;
+  --hover-bg: rgb(240, 242, 243);
+
+  --color-brand: #e91e63;
+  --color-link: #1971c2;
+  --color-brand-rgb: 233, 30, 99;
+  --color-black: #172b4d;
+  --color-white: #ffffff;
+  --color-gray-0: #fbfbfb;
+  --color-gray-1: #f4f5f7;
+  --color-gray-2: #eaecef;
+  --color-gray-3: #cbcdd4;
+  --color-gray-4: #808289;
+  --sidebar-width: 18rem;
+  --border-radius-md: 6px;
+  --pr-border: 1px solid var(--border-color);
+}
+* {
+  font-family: 'Nunito', sans-serif;
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+button {
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.page-footer {
+  text-align: center;
+  font-size: 15px;
+  height: 40px;
+  font-weight: 600;
+}
+.page-width {
+  width: var(--page-width);
+  margin: 0px auto;
+}
+.page-body {
+  width: 75%;
+  margin: 30px auto;
+  min-height: 70vh;
+}
+.flex-justify-space-between {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+.flex-align-center {
+  display: flex;
+  align-items: center;
+}
+.f-14 {
+  font-size: 14px;
+}
+.text-align-center {
+  text-align: center;
+}
+.m-b-15 {
+  margin-bottom: 5px;
+}
+.f-w-600 {
+  font-weight: 600;
+}
+.m-l-5 {
+  margin-left: 7px;
+}
+.prevent-img-download {
+  position: relative;
+}
+.prevent-img-download::after {
+  content: '';
+  display: inline-block;
+  position: absolute;
+  z-index: 0;
+  inset: 0px;
+}
+input[type='color'],
+input[type='date'],
+input[type='datetime'],
+input[type='datetime-local'],
+input[type='email'],
+input[type='month'],
+input[type='number'],
+input[type='password'],
+input[type='search'],
+input[type='tel'],
+input[type='text'],
+input[type='time'],
+input[type='url'],
+input[type='week'],
+select:focus,
+textarea {
+  font-size: 16px !important;
+}
+
+.ReactModal__Content {
+  width: 380px;
+}
+
+@media (max-width: 1150px) {
+  * {
+    font-family: 'Figtree', sans-serif;
+  }
+  .page-width {
+    width: var(--mobile-width-1025px);
+  }
+  .page-body {
+    width: 100%;
   }
 }
 
-html,
-body {
-  max-width: 100vw;
-  overflow-x: hidden;
-}
-
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
+@media (max-width: 768px) {
+  .page-body {
+    width: 95%;
+  }
+  .page-footer {
+    font-size: 13px;
   }
 }
