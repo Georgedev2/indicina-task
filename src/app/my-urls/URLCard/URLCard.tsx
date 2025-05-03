@@ -1,11 +1,11 @@
 'use client';
 import { icons } from '@/app/components/assets';
 import React, { FC } from 'react';
-import styles from './urlCard.module.css'
-import { IurlDetail } from '@/app/components/type';
+import styles from './urlCard.module.css';
 import Link from 'next/link';
 import { Tooltip } from 'react-tooltip';
 import { timeAgo } from '@/app/components/utils';
+import { IurlDetail } from '@/app/types';
 
 const { createdAt, short, long, icons_ } = styles;
 
@@ -23,15 +23,15 @@ const URLCard: FC<Props> = ({ urlDetail }) => {
         <span> {LongUrl}</span>
       </p>
       <div className={createdAt}>
-        <p data-testId="clicks">{clicks} visits</p> |{' '}
-        <p data-testId="created">Created: {timeAgo(created as number)}</p>
+        <p data-testid="clicks">{clicks} visits</p> |{' '}
+        <p data-testid="created">Created: {timeAgo(created as number)}</p>
       </div>
       <div className={icons_}>
         <Link
           target="blank"
           data-tooltip-content="Visit URL"
           href={LongUrl as string}
-          data-testId="tolongUrl"
+          data-testid="tolongUrl"
           data-tooltip-id="my-tooltip"
         >
           <Tooltip id="my-tooltip" place="bottom" content="Hello world!" />

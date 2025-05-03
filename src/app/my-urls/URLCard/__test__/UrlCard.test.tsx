@@ -1,8 +1,8 @@
 'use client';
 import { render, screen } from '@testing-library/react';
-import URLCard from '../URLCard'; 
+import URLCard from '../URLCard';
 import '@testing-library/jest-dom';
-import { IurlDetail } from '@/app/components/type';
+import { IurlDetail } from '@/app/api/type';
 
 const mockUrlDetail: Partial<IurlDetail> = {
   shortURL: 'short.ly/abc123',

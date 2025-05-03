@@ -1,18 +1,19 @@
 'use client';
-import styles from './searchInput.module.css'
+import styles from './searchInput.module.css';
 import { FC, useState } from 'react';
 import { icons } from '../../assets';
+import { useRouter } from 'next/navigation';
 
-const { SearchIcon, CloseIconWithBG } = icons;
+const { SearchIcon, SendIcon } = icons;
 
-type Props={
-  placeholder?:string
-}
-const SearchInput:FC<Props> = (props) => {
-  const {  placeholder="Search ...", ...rest}=props
+type Props = {
+  placeholder?: string;
+};
+const SearchInput: FC<Props> = (props) => {
+  const { placeholder = 'Search ...', ...rest } = props;
   const [isInputFocused, setIsInputFocused] = useState(false);
   const [inputValue, setInputValue] = useState('');
-
+  const router = useRouter();
   const handleInputFocus = () => {
     setIsInputFocused(true);
   };
@@ -21,22 +22,26 @@ const SearchInput:FC<Props> = (props) => {
     setIsInputFocused(false);
   };
 
-  const handleClearInput = () => {
-    setInputValue('');
+  const handleSerach = () => {
+    const param = new URLSearchParams();
+    param.set('search', inputValue);
+    router.push(`?${param.toString()}`);
   };
-
+  
   return (
     <form
+      method="get"
       className={`${styles.searchForm} ${
         isInputFocused ? 'active-border' : ''
       }`}
     >
-      <SearchIcon size="1.4rem"  />
+      <SearchIcon size="1.4rem" />
       <input
         type="text"
-        data-testId='search'
-       placeholder={placeholder}
+        data-testid="search"
+        placeholder={placeholder}
         onFocus={handleInputFocus}
+        name="search"
         onBlur={handleInputBlur}
         value={inputValue}
         onChange={(e) => setInputValue(e.target.value)}
@@ -44,12 +49,9 @@ const SearchInput:FC<Props> = (props) => {
       />
 
       {inputValue && (
-        <CloseIconWithBG
-          role="button"
-          className={styles.close}
-          onClick={handleClearInput}
-          size="1.3rem"
-        />
+        <button data-testid='send-btn' onClick={handleSerach} type='button'>
+          <SendIcon className={styles.sendIcon} data-testid='send-icon'/>
+        </button>
       )}
     </form>
   );
