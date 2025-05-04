@@ -6,13 +6,17 @@ export interface ServerError {
   stack?: string;
 }
 export interface IurlDetail {
-  id:string
+  id:number
   shortUrlId: string;
   longUrl: string;
   shortURL: string;
   created: number;
   clicks: number;
-  isActive: boolean;
+  isActive?: boolean;
 }
 
 export type TCatchBlockError = { message: string; stack: unknown };
+
+export type StripUndefined<T> = {
+  [K in keyof T as undefined extends T[K] ? never : K]: T[K];
+};

@@ -1,6 +1,16 @@
+import { IurlDetail} from '../types';
 import { encodeBase62 } from './serverUtils';
 
-export const urlStore = {
+
+type TStore = {
+  count: number;
+  urlList: IurlDetail[];
+  createUrl: (arg: { longUrl: string; origin: string }) => IurlDetail;
+  getOriginalUrlGivenLongUrl: (arg: { shortUrlId: string }) => IurlDetail |undefined
+  getAllURL: (query: string) => IurlDetail[];
+};
+
+export const urlStore: TStore = {
   count: 200,
   urlList: [
     {
@@ -24,7 +34,7 @@ export const urlStore = {
       id: 3,
       shortUrlId: '3ad32p9',
       shortURL: 'https://example.com/3ad32p9',
-      LongUrl: 'https://example.com/very-long-url',
+      longUrl: 'https://example.com/very-long-url',
       created: Date.now() - 45 * 60 * 1000,
       clicks: 1026,
     },
@@ -36,10 +46,13 @@ export const urlStore = {
       created: 1746222651510,
       clicks: 1026,
     },
-  ],
-  getAllURL(query: string) {
+  ] ,
+  getAllURL(query: string = '') {
+    if (!query.trim()) {
+      return this.urlList;
+    }
     return this.urlList.filter((item) =>
-      item?.LongUrl?.toLowerCase().includes(query.toLowerCase())
+      item?.longUrl?.toLowerCase().includes(query.toLowerCase())
     );
   },
   createUrl(arg: { longUrl: string; origin: string }) {
@@ -54,7 +67,16 @@ export const urlStore = {
       created: Date.now(),
       clicks: 0,
     };
-    this.urlList.push(newURL);
+    this.urlList = [...this.urlList, newURL];
+    // console.log('bbb',this.urlList)
     return newURL;
   },
+  getOriginalUrlGivenLongUrl(arg: { shortUrlId: string }) {
+    return this.urlList.find(
+      (el) => el.shortUrlId == arg?.shortUrlId?.replaceAll('/', '')
+    );
+  },
 };
+
+
+

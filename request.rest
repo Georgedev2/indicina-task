@@ -4,3 +4,18 @@ Content-Type: application/json
 {
 "longUrl":"https://example.com/my/long/article?serach=k"
 }
+
+###
+POST http://localhost:3000/api/decode
+Content-Type: application/json
+
+{
+"shortUrl":"https://example.com/3F"
+}
+
+###
+GET  http://localhost:3000/api/list
+
+
+###
+GET  http://localhost:3000/api/list?search=moviebox

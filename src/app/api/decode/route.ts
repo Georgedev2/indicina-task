@@ -5,8 +5,8 @@ import { urlStore } from '../dataStore';
 
 export const POST = async (req: NextRequest) => {
   try {
-    const body = await req.json();
-    if (body && !body.longUrl) {
+    const body = (await req.json()) as { shortUrl: string };
+    if (body && !body.shortUrl) {
       return NextResponse.json(
         {
           message: 'invalid URL',
@@ -17,19 +17,22 @@ export const POST = async (req: NextRequest) => {
       );
     }
 
-    const { origin, href } = new URL(body.longUrl);
-    const newUrl = urlStore.createUrl({
-      longUrl: href,
-      origin,
+    const { pathname } = new URL(body.shortUrl);
+    
+    const newUrl = urlStore.getOriginalUrlGivenLongUrl({
+      shortUrlId: pathname,
     });
-    return NextResponse.json(
-      {
-        data: newUrl,
-      },
-      {
-        status: 201,
-      }
-    );
+    if (!newUrl) {
+      return NextResponse.json(
+        {
+          message: 'no long url found for this given short url',
+        },
+        {
+          status: 400,
+        }
+      );
+    }
+    return NextResponse.json({ newUrl, success:true });
   } catch (error) {
     return NextResponse.json(get500ResponseBody(error as TCatchBlockError), {
       status: 500,
