@@ -19,3 +19,6 @@ GET  http://localhost:3000/api/list
 
 ###
 GET  http://localhost:3000/api/list?search=moviebox
+
+###
+GET  http://localhost:3000/api/redirect/3F

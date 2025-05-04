@@ -1,12 +1,14 @@
-import { IurlDetail} from '../types';
+import { IurlDetail } from '../types';
 import { encodeBase62 } from './serverUtils';
-
 
 type TStore = {
   count: number;
   urlList: IurlDetail[];
   createUrl: (arg: { longUrl: string; origin: string }) => IurlDetail;
-  getOriginalUrlGivenLongUrl: (arg: { shortUrlId: string }) => IurlDetail |undefined
+  getOriginalUrlGivenLongUrl: (
+    arg: { shortUrlId: string },
+    updateClick?: boolean
+  ) => IurlDetail | undefined;
   getAllURL: (query: string) => IurlDetail[];
 };
 
@@ -46,7 +48,7 @@ export const urlStore: TStore = {
       created: 1746222651510,
       clicks: 1026,
     },
-  ] ,
+  ],
   getAllURL(query: string = '') {
     if (!query.trim()) {
       return this.urlList;
@@ -67,16 +69,28 @@ export const urlStore: TStore = {
       created: Date.now(),
       clicks: 0,
     };
+    // this.urlList
     this.urlList = [...this.urlList, newURL];
-    // console.log('bbb',this.urlList)
     return newURL;
   },
-  getOriginalUrlGivenLongUrl(arg: { shortUrlId: string }) {
+  getOriginalUrlGivenLongUrl(
+    arg: { shortUrlId: string },
+    // updateClick?: boolean
+  ) {
+
+    // if (updateClick) {
+    //   console.log('updateClick12',updateClick, arg)
+    //   return this.urlList.find((el, index) => {
+    //     if (el.shortUrlId == arg?.shortUrlId) {
+    //       el.clicks = el.clicks + 1;
+    //       this.urlList = this.urlList.splice(index, 1, el);
+    //       console.log('    this.urlList',    this.urlList)
+    //       return true;
+    //     }
+    //   });
+    // }
     return this.urlList.find(
       (el) => el.shortUrlId == arg?.shortUrlId?.replaceAll('/', '')
     );
   },
 };
-
-
-
