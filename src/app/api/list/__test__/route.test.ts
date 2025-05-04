@@ -1,9 +1,10 @@
+import { urlStore } from '../../dataStore';
 import { GET } from '../route';
 import { NextRequest } from 'next/server';
-import { urlList } from '../../dataStore';
+
 
 jest.mock('../../dataStore', () => ({
-  urlList,
+  urlStore,
 }));
 
 describe('GET handler', () => {
@@ -37,7 +38,7 @@ describe('GET handler', () => {
 
     expect(response.status).toBe(200);
     expect(json.success).toBe(true);
-    expect(json.data.length).toBe(urlList.length);
+    expect(json.data.length).toBe(urlStore.urlList.length);
   });
 
   it('should handle errors and return 500', async () => {

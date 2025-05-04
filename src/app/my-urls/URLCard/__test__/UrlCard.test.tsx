@@ -2,11 +2,12 @@
 import { render, screen } from '@testing-library/react';
 import URLCard from '../URLCard';
 import '@testing-library/jest-dom';
-import { IurlDetail } from '@/app/api/type';
+import { IurlDetail } from '@/app/types';
+
 
 const mockUrlDetail: Partial<IurlDetail> = {
   shortURL: 'short.ly/abc123',
-  LongUrl: 'https://example.com/full-url',
+  longUrl: 'https://example.com/full-url',
   created: Date.now(),
   clicks: 1026,
 };
@@ -18,7 +19,7 @@ describe('URLCard Component', () => {
       screen.getByText(mockUrlDetail.shortURL as string)
     ).toBeInTheDocument();
     expect(
-      screen.getByText(mockUrlDetail.LongUrl as string)
+      screen.getByText(mockUrlDetail.longUrl as string)
     ).toBeInTheDocument();
   });
 
@@ -34,7 +35,7 @@ describe('URLCard Component', () => {
     render(<URLCard urlDetail={mockUrlDetail} />);
     expect(screen.getByTestId('tolongUrl')).toHaveAttribute(
       'href',
-      mockUrlDetail?.LongUrl
+      mockUrlDetail?.longUrl
     );
   });
 });

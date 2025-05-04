@@ -14,13 +14,13 @@ type Props = {
   urlDetail: Partial<IurlDetail>;
 };
 const URLCard: FC<Props> = ({ urlDetail }) => {
-  const { shortURL, LongUrl, created, clicks } = urlDetail;
+  const { shortURL, longUrl, created, clicks } = urlDetail;
 
   return (
     <div>
       <h3 className={short}>{shortURL}</h3>
       <p className={long}>
-        <span> {LongUrl}</span>
+        <span> {longUrl}</span>
       </p>
       <div className={createdAt}>
         <p data-testid="clicks">{clicks} visits</p> |{' '}
@@ -30,7 +30,7 @@ const URLCard: FC<Props> = ({ urlDetail }) => {
         <Link
           target="blank"
           data-tooltip-content="Visit URL"
-          href={LongUrl as string}
+          href={longUrl as string}
           data-testid="tolongUrl"
           data-tooltip-id="my-tooltip"
         >

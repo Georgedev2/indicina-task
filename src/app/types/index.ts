@@ -8,7 +8,7 @@ export interface ServerError {
 export interface IurlDetail {
   id:string
   shortUrlId: string;
-  LongUrl: string;
+  longUrl: string;
   shortURL: string;
   created: number;
   clicks: number;

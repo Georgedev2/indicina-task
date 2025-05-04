@@ -1,0 +1,6 @@
+POST http://localhost:3000/api/encode
+Content-Type: application/json
+
+{
+"longUrl":"https://example.com/my/long/article?serach=k"
+}
