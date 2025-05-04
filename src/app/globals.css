@@ -47,7 +47,12 @@ button {
   outline: none;
   cursor: pointer;
 }
-
+a{
+  text-decoration: none;
+}
+ul li{
+  list-style: none;
+}
 .page-footer {
   text-align: center;
   font-size: 15px;

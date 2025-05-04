@@ -21,3 +21,7 @@ export const DOMAIN = DOMAIN_(environment) as string;
 
 const prefix='/api'
 export const MY_URL_LIST_PATH=`${prefix}/list`
+
+
+// PAGES URLs
+export const MY_URLS_PAGE='/my-urls'
