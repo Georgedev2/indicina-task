@@ -8,7 +8,7 @@
     color: var(--primary-color);
     word-break: break-all;
   }
-  .createdAt {
+  .created {
     display: flex;
     font-size: 15px;
     gap: 5px;

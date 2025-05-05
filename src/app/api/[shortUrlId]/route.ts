@@ -3,10 +3,16 @@ import { decodeBase62, get500ResponseBody } from '../serverUtils';
 import { TCatchBlockError } from '@/app/types';
 import db from '../db';
 
-export const POST = async (req: NextRequest) => {
+type Props = {
+  params: Promise<{
+    shortUrlId: string;
+  }>;
+};
+
+export const GET = async (_: NextRequest, prop: Props) => {
   try {
-    const body = (await req.json()) as { shortUrl: string };
-    if (body && !body.shortUrl) {
+    const { shortUrlId } = await prop.params;
+    if (!shortUrlId) {
       return NextResponse.json(
         {
           message: 'invalid URL',
@@ -16,16 +22,15 @@ export const POST = async (req: NextRequest) => {
         }
       );
     }
-
-    const { pathname } = new URL(body.shortUrl);
-    const slug = pathname?.replaceAll('/', '');
-    const decoded = decodeBase62(slug);
+console.log('shortUrlId',shortUrlId)
+    const decoded = decodeBase62(shortUrlId);
+    console.log('decoded ',decoded )
     const url = await db.urls.findUnique({
       where: {
         id: decoded,
       },
     });
-    
+    console.log(' url ', url  )
     if (!url) {
       return NextResponse.json(
         {
@@ -36,7 +41,9 @@ export const POST = async (req: NextRequest) => {
         }
       );
     }
-    return NextResponse.json({ longUrl:url.longUrl, success: true });
+    return NextResponse.json({
+      longUrl: url. longUrl,
+    });
   } catch (error) {
     return NextResponse.json(get500ResponseBody(error as TCatchBlockError), {
       status: 500,

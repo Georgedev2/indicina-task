@@ -123,7 +123,7 @@ exports.Prisma.UrlsScalarFieldEnum = {
   longUrl: 'longUrl',
   shortURL: 'shortURL',
   createdAt: 'createdAt',
-  clicks: 'clicks'
+  visits: 'visits'
 };
 
 exports.Prisma.SortOrder = {

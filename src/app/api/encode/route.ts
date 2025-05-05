@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { get500ResponseBody } from '../serverUtils';
+import { encodeBase62, get500ResponseBody } from '../serverUtils';
 import { TCatchBlockError } from '@/app/types';
-import { urlStore } from '../dataStore';
+import db from '../db';
 
 export const POST = async (req: NextRequest) => {
   try {
@@ -16,15 +16,19 @@ export const POST = async (req: NextRequest) => {
         }
       );
     }
-
     const { origin, href } = new URL(body.longUrl);
-    const newUrl = urlStore.createUrl({
-      longUrl: href,
-      origin,
+    const newUrl = await db.urls.create({
+      data: {
+        longUrl: href,
+      },
     });
+
+    const encoded = encodeBase62(newUrl.id);
     return NextResponse.json(
       {
-        data: newUrl,
+        longUrl: href,
+        shortUrlId: encoded,
+        shortURL: `${origin}/${encoded}`,
       },
       {
         status: 201,

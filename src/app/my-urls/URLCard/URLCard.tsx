@@ -7,14 +7,14 @@ import { Tooltip } from 'react-tooltip';
 import { timeAgo } from '@/app/components/utils';
 import { IurlDetail } from '@/app/types';
 
-const { createdAt, short, long, icons_ } = styles;
+const { created, short, long, icons_ } = styles;
 
 const { ExternalLinkIcon, ClipboardCopyIcon, ShearIcon } = icons;
 type Props = {
   urlDetail: Partial<IurlDetail>;
 };
 const URLCard: FC<Props> = ({ urlDetail }) => {
-  const { shortURL, longUrl, created, clicks } = urlDetail;
+  const { shortURL, longUrl, createdAt, visits } = urlDetail;
 
   return (
     <div>
@@ -22,9 +22,11 @@ const URLCard: FC<Props> = ({ urlDetail }) => {
       <p className={long}>
         <span> {longUrl}</span>
       </p>
-      <div className={createdAt}>
-        <p data-testid="clicks">{clicks} visits</p> |{' '}
-        <p data-testid="created">Created: {timeAgo(created as number)}</p>
+      <div className={created}>
+        <p data-testid="clicks">{visits} visits</p> |{' '}
+        <p data-testid="created">
+          Created: {timeAgo(new Date(createdAt as Date).getTime())}
+        </p>
       </div>
       <div className={icons_}>
         <Link

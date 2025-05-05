@@ -10,7 +10,7 @@ POST http://localhost:3000/api/decode
 Content-Type: application/json
 
 {
-"shortUrl":"https://example.com/3F"
+"shortUrl":"https://example.com/B"
 }
 
 ###
@@ -21,4 +21,4 @@ GET  http://localhost:3000/api/list
 GET  http://localhost:3000/api/list?search=moviebox
 
 ###
-GET  http://localhost:3000/api/redirect/3F
+GET  http://localhost:3000/api/C

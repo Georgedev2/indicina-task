@@ -6,12 +6,12 @@ export interface ServerError {
   stack?: string;
 }
 export interface IurlDetail {
-  id:number
+  id: number;
   shortUrlId: string;
   longUrl: string;
   shortURL: string;
-  created: number;
-  clicks: number;
+  createdAt: Date;
+  visits: number;
   isActive?: boolean;
 }
 
