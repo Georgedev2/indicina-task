@@ -13,6 +13,7 @@ export const GET = async (_: NextRequest, prop: Props) => {
 
   try {
     const { shortUrlId } = await prop.params;
+    console.log('shortUrlId ',shortUrlId )
     if (!shortUrlId) {
       return NextResponse.json(
         {

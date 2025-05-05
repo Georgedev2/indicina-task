@@ -15,10 +15,12 @@ datasource db {
 }
 
 model urls {
-  id        Int      @id @default(autoincrement())
-  longUrl   String
-  createdAt DateTime @default(now())
-  visits    Int      @default(0)
+  id         Int      @id @default(autoincrement())
+  longUrl    String
+  shortUrl   String?
+  shortUrlId String?
+  createdAt  DateTime @default(now())
+  visits     Int      @default(0)
 
   @@map("urls")
 }

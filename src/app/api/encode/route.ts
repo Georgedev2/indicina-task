@@ -23,6 +23,15 @@ export const POST = async (req: NextRequest) => {
       },
     });
 
+  await db.urls.update({
+      where:{
+        id:newUrl.id
+      },
+      data: {
+        
+        // : href,
+      },
+    });
     const encoded = encodeBase62(newUrl.id);
     return NextResponse.json(
       {
