@@ -27,7 +27,7 @@ const SearchInput: FC<Props> = (props) => {
     param.set('search', inputValue);
     router.push(`?${param.toString()}`);
   };
-  
+
   return (
     <form
       method="get"
@@ -47,12 +47,11 @@ const SearchInput: FC<Props> = (props) => {
         onChange={(e) => setInputValue(e.target.value)}
         {...rest}
       />
-
-      {inputValue && (
-        <button data-testid='send-btn' onClick={handleSerach} type='button'>
-          <SendIcon className={styles.sendIcon} data-testid='send-icon'/>
-        </button>
-      )}
+      
+      <button data-testid="send-btn" onClick={handleSerach} type="button">
+        <SendIcon className={styles.sendIcon} data-testid="send-icon" />
+      </button>
+      
     </form>
   );
 };
