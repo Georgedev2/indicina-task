@@ -52,7 +52,7 @@ const page: FC<Props> = async (props) => {
         <div className={list}>
           {hasURLHistory ? (
             data.map((item: IurlDetail) => (
-              <URLCard key={item.id} urlDetail={item} />
+              <URLCard key={item.shortUrl} urlDetail={item} />
             ))
           ) : (
             <div className={emptyState}>No recent URLs in your history</div>
