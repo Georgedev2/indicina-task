@@ -5,10 +5,11 @@ import { SEARCH_KEY } from '@/app/globalConstant';
 import db from '../db';
 
 export const GET = async (request: NextRequest) => {
+  
   try {
     const query = request.nextUrl.searchParams.get(SEARCH_KEY) || '';
     let urls;
-    if (!query) {
+    if (query=='') {
       urls = await db.urls.findMany();
     }
 

@@ -119,9 +119,7 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
 
 exports.Prisma.UrlsScalarFieldEnum = {
   id: 'id',
-  shortUrlId: 'shortUrlId',
   longUrl: 'longUrl',
-  shortURL: 'shortURL',
   createdAt: 'createdAt',
   visits: 'visits'
 };
@@ -129,11 +127,6 @@ exports.Prisma.UrlsScalarFieldEnum = {
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
-};
-
-exports.Prisma.NullsOrder = {
-  first: 'first',
-  last: 'last'
 };
 
 

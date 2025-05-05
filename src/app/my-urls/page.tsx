@@ -64,12 +64,3 @@ const page: FC<Props> = async (props) => {
 };
 
 export default page;
-
-// {
-//   id: 1,
-//   shortUrlId: '3ad32p9',
-//   longUrl: 'https://example.com/very-long-url',
-//   shortURL: 'https://example.com/3ad32p9',
-//   created: Date.now() - 11 * 60 * 1000,
-//   clicks: 1023,
-// }

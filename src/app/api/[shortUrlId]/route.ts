@@ -10,6 +10,7 @@ type Props = {
 };
 
 export const GET = async (_: NextRequest, prop: Props) => {
+
   try {
     const { shortUrlId } = await prop.params;
     if (!shortUrlId) {
@@ -29,6 +30,7 @@ export const GET = async (_: NextRequest, prop: Props) => {
         id: decoded,
       },
     });
+    
 
     if (!url) {
       return NextResponse.json(
@@ -40,9 +42,21 @@ export const GET = async (_: NextRequest, prop: Props) => {
         }
       );
     }
-    return NextResponse.json({
-      longUrl: url. longUrl,
+    await db.urls.update({
+      where: {
+        id: decoded,
+      },
+      data: {
+        visits: {
+          increment: 1,
+        },
+      },
     });
+    
+    return NextResponse.redirect(url.longUrl)
+    // return NextResponse.json({
+    //   longUrl: url.longUrl,
+    // });
   } catch (error) {
     return NextResponse.json(get500ResponseBody(error as TCatchBlockError), {
       status: 500,

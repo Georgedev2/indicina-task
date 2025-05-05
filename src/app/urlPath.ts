@@ -19,8 +19,8 @@ const DOMAIN_ = (env: Env) => {
 
 export const DOMAIN = DOMAIN_(environment) as string;
 
-const prefix='/api'
-export const MY_URL_LIST_PATH=`${prefix}/list`
+export const BASE_PATH='/api'
+export const MY_URL_LIST_PATH=`${BASE_PATH}/list`
 
 
 // PAGES URLs
