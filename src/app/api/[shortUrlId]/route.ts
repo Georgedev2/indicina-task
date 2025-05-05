@@ -22,15 +22,14 @@ export const GET = async (_: NextRequest, prop: Props) => {
         }
       );
     }
-console.log('shortUrlId',shortUrlId)
     const decoded = decodeBase62(shortUrlId);
-    console.log('decoded ',decoded )
+
     const url = await db.urls.findUnique({
       where: {
         id: decoded,
       },
     });
-    console.log(' url ', url  )
+
     if (!url) {
       return NextResponse.json(
         {
