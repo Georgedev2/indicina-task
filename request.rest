@@ -22,3 +22,6 @@ GET  http://localhost:3000/api/list?search=moviebox
 
 ###
 GET  http://localhost:3000/api/C
+
+###
+GET  http://localhost:3000/api/statistic/m
