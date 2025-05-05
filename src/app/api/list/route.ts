@@ -10,6 +10,13 @@ export const GET = async (request: NextRequest) => {
     let urls;
     if (query == '') {
       urls = await db.urls.findMany({
+        select: {
+          longUrl: true,
+          shortUrl: true,
+          shortUrlId: true,
+          createdAt: true,
+          visits: true,
+        },
         orderBy: {
           createdAt: 'desc',
         },
@@ -17,6 +24,13 @@ export const GET = async (request: NextRequest) => {
     }
 
     urls = await db.urls.findMany({
+      select: {
+        longUrl: true,
+        shortUrl: true,
+        shortUrlId: true,
+        createdAt: true,
+        visits: true,
+      },
       where: {
         longUrl: {
           contains: query,

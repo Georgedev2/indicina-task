@@ -6,17 +6,17 @@ import { IurlDetail } from '@/app/types';
 
 
 const mockUrlDetail: Partial<IurlDetail> = {
-  shortURL: 'short.ly/abc123',
+  shortUrl: 'short.ly/abc123',
   longUrl: 'https://example.com/full-url',
-  created: Date.now(),
-  clicks: 1026,
+  createdAt: new Date(),
+  visits:1026,
 };
 
 describe('URLCard Component', () => {
   it('renders short and long URLs', () => {
     render(<URLCard urlDetail={mockUrlDetail} />);
     expect(
-      screen.getByText(mockUrlDetail.shortURL as string)
+      screen.getByText(mockUrlDetail.shortUrl as string)
     ).toBeInTheDocument();
     expect(
       screen.getByText(mockUrlDetail.longUrl as string)

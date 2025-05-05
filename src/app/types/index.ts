@@ -9,7 +9,7 @@ export interface IurlDetail {
   id: number;
   shortUrlId: string;
   longUrl: string;
-  shortURL: string;
+  shortUrl: string;
   createdAt: Date;
   visits: number;
   isActive?: boolean;

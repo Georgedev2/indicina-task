@@ -18,7 +18,7 @@ const {
 } = styles;
 
 type TServerFeedBack = {
-  shortURL: string;
+  shortUrl: string;
   message: string;
   success: boolean;
   processing: boolean;
@@ -30,13 +30,13 @@ const formDefault = {
   success: false,
   processing: false,
   hasShortenUrl: false,
-  shortURL: '',
+  shortUrl: '',
   longUrl: '',
 };
 
-const urlformDefault={
-    longUrl: '',
-  }
+const urlformDefault = {
+  longUrl: '',
+};
 
 const ShortUrlForm = () => {
   const [serverFeedback, setServerFeedback] =
@@ -49,6 +49,7 @@ const ShortUrlForm = () => {
   };
 
   const shortenUrl = async () => {
+    if (!url.longUrl.trim()) return;
     try {
       setServerFeedback((oldState) => ({
         ...oldState,
@@ -74,7 +75,6 @@ const ShortUrlForm = () => {
         });
       }
       const data = await res.json();
-
       switch (res.status) {
         case 201:
           setServerFeedback((oldState) => ({
@@ -105,9 +105,9 @@ const ShortUrlForm = () => {
   };
   const shortenAnother = () => {
     setServerFeedback((oldState) => ({ ...oldState, hasShortenUrl: false }));
-    setUrl(urlformDefault)
+    setUrl(urlformDefault);
   };
-  const { hasShortenUrl, longUrl, shortURL, processing } = serverFeedback;
+  const { hasShortenUrl, longUrl, shortUrl, processing } = serverFeedback;
   return (
     <>
       {hasShortenUrl ? (
@@ -121,7 +121,7 @@ const ShortUrlForm = () => {
             </div>
             <div className={yourShortenUrl}>
               <span className={label}> TinyURL</span>
-              <p>{shortURL}</p>
+              <p>{shortUrl}</p>
             </div>
             <div className={myUrls}>
               <Link className={`link-button ${urlList}`} href={MY_URLS_PAGE}>
@@ -133,7 +133,7 @@ const ShortUrlForm = () => {
         </>
       ) : (
         <>
-          <form className={formBox}>
+          <form  className={formBox}>
             <h3>Shorten a long URL</h3>
             <input
               required
@@ -145,7 +145,6 @@ const ShortUrlForm = () => {
               placeholder="Enter long link here"
             />
             <button type="button" className={submit} onClick={shortenUrl}>
-              {' '}
               {processing ? 'Processing...' : 'Shorten URL'}
             </button>
           </form>

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { NextRequest, NextResponse } from 'next/server';
 import { encodeBase62, get500ResponseBody } from '../serverUtils';
 import { TCatchBlockError } from '@/app/types';
@@ -22,25 +23,29 @@ export const POST = async (req: NextRequest) => {
         longUrl: href,
       },
     });
+    const encoded = encodeBase62(newUrl.id);
 
-  await db.urls.update({
-      where:{
-        id:newUrl.id
+    const updateUrl = await db.urls.update({
+      where: {
+        id: newUrl.id,
       },
       data: {
-        
-        // : href,
+        shortUrlId: encoded,
+        shortUrl: `${origin}/${encoded}`,
       },
     });
-    const encoded = encodeBase62(newUrl.id);
+
+    const {
+      id,
+      createdAt,
+      shortUrlId,
+      ...rest
+    } = updateUrl;
+
     return NextResponse.json(
       {
-        urlDetail: {
-          longUrl: href,
-          shortUrlId: encoded,
-          shortURL: `${origin}/${encoded}`,
-        },
-        success:true
+        urlDetail: rest,
+        success: true,
       },
       {
         status: 201,

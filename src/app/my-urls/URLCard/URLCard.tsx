@@ -15,33 +15,37 @@ type Props = {
 };
 
 const URLCard: FC<Props> = ({ urlDetail }) => {
-  const { shortURL, longUrl, createdAt, visits, id } = urlDetail;
+  const { shortUrl, longUrl, createdAt, visits, shortUrlId } = urlDetail;
 
   return (
     <div>
-      <h3 className={short}>{shortURL}</h3>
+      <h3 className={short}>{shortUrl}</h3>
       <p className={long}>
         <span> {longUrl}</span>
       </p>
       <div className={created}>
-        <p data-testid="clicks">{visits} visits</p> |{' '}
+        <p data-testid="clicks">
+          <span> {visits} </span> <span> visits</span>
+        </p>
+        |
         <p data-testid="created">
-          Created: {timeAgo(new Date(createdAt as Date).getTime())}
+          <span> Created: </span>
+          <span> {timeAgo(new Date(createdAt as Date).getTime())}</span>
         </p>
       </div>
       <div className={icons_}>
-        <form action={`${BASE_PATH}/${id}`}>
-        <button 
-          data-tooltip-content="Visit URL"
-          data-testid="tolongUrl"
-          data-tooltip-id="my-tooltip"
-        >
-          <Tooltip id="my-tooltip" place="bottom" />
+        <form action={`${BASE_PATH}/${shortUrlId}`}>
+          <button
+            data-tooltip-content="Visit URL"
+            data-testid="tolongUrl"
+            data-tooltip-id="my-tooltip"
+          >
+            <Tooltip id="my-tooltip" place="bottom" />
 
-          <ExternalLinkIcon size={'1rem'} />
-        </button>
+            <ExternalLinkIcon size={'1rem'} />
+          </button>
         </form>
-     
+
         <div role="button">
           <Tooltip id="copy" place="bottom" content="Copy to clickboard" />
           <ClipboardCopyIcon data-tooltip-id="copy" />

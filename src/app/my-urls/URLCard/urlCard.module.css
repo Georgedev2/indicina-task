@@ -7,6 +7,7 @@
   .long {
     color: var(--primary-color);
     word-break: break-all;
+    font-size: 15px;
   }
   .created {
     display: flex;
