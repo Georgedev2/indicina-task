@@ -5,12 +5,15 @@ import { SEARCH_KEY } from '@/app/globalConstant';
 import db from '../db';
 
 export const GET = async (request: NextRequest) => {
-  
   try {
     const query = request.nextUrl.searchParams.get(SEARCH_KEY) || '';
     let urls;
-    if (query=='') {
-      urls = await db.urls.findMany();
+    if (query == '') {
+      urls = await db.urls.findMany({
+        orderBy: {
+          createdAt: 'desc',
+        },
+      });
     }
 
     urls = await db.urls.findMany({
@@ -18,6 +21,9 @@ export const GET = async (request: NextRequest) => {
         longUrl: {
           contains: query,
         },
+      },
+      orderBy: {
+        createdAt: 'desc',
       },
     });
     return NextResponse.json({

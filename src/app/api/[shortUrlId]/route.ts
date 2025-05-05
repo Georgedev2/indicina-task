@@ -54,9 +54,7 @@ export const GET = async (_: NextRequest, prop: Props) => {
     });
     
     return NextResponse.redirect(url.longUrl)
-    // return NextResponse.json({
-    //   longUrl: url.longUrl,
-    // });
+
   } catch (error) {
     return NextResponse.json(get500ResponseBody(error as TCatchBlockError), {
       status: 500,

@@ -21,7 +21,7 @@ export const DOMAIN = DOMAIN_(environment) as string;
 
 export const BASE_PATH='/api'
 export const MY_URL_LIST_PATH=`${BASE_PATH}/list`
-
+export const  ENCODE_PATH=`${BASE_PATH}/encode`
 
 // PAGES URLs
 export const MY_URLS_PAGE='/my-urls'

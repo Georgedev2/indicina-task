@@ -26,9 +26,12 @@ export const POST = async (req: NextRequest) => {
     const encoded = encodeBase62(newUrl.id);
     return NextResponse.json(
       {
-        longUrl: href,
-        shortUrlId: encoded,
-        shortURL: `${origin}/${encoded}`,
+        urlDetail: {
+          longUrl: href,
+          shortUrlId: encoded,
+          shortURL: `${origin}/${encoded}`,
+        },
+        success:true
       },
       {
         status: 201,

@@ -1,5 +1,9 @@
-import styles from './page.module.css';
+import ShortUrlForm from './ShortUrlForm';
 
 export default function Home() {
-  return <div className={styles.page}></div>;
+  return (
+    <div className="page-width">
+      <ShortUrlForm />
+    </div>
+  );
 }
