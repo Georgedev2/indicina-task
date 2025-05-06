@@ -1,4 +1,8 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+This is a nextjs project, that allows user to enter a URL such as `https://indicina.co/sbg/standard-bank-group/careers/apply/jobs/view-all-jobs/job-detail?jobID=744000056709993` and it returns a
+short URL such as `http://short.est/GeAi9K` Visiting the shortened URL should redirect the user to the long
+URL. Using the example above, visiting `http://short.est/GeAi9K` should redirect the user to
+`https://indicina.co/sbg/standard-bank-group/careers/apply/jobs/view-all-jobs/job-detail?jobID=744000056709993`
+
 
 ## Getting Started
 first clone the project by running 
@@ -23,21 +27,27 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Request:
+### 1. POST http://localhost:3000/api/encode
+`` 
+Content-Type: application/json
+``
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+{
+"longUrl":"https://example.com/my/long/article?serach=k"
+}
+```
 
-## Learn More
+## Response
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+``
+{
+  urlDetail: {
+    longUrl: 'https://example.com/my/long/article?serach=k',
+    shortUrl: 'https://example.com/NDg',
+    visits: 0,
+  },
+  success: true
+}
+``
