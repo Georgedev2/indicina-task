@@ -27,8 +27,7 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-## Request:
-### 1. POST http://localhost:3000/api/encode
+## 1. POST http://localhost:3000/api/encode
 `` 
 Content-Type: application/json
 ``
@@ -39,7 +38,7 @@ Content-Type: application/json
 }
 ```
 
-## Response
+#### Response
 
 ```bash
 {
