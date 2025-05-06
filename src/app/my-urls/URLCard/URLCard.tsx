@@ -9,7 +9,7 @@ import { BASE_PATH } from '@/app/urlPath';
 
 const { created, short, long, icons_ } = styles;
 
-const { ExternalLinkIcon, ClipboardCopyIcon, ShearIcon } = icons;
+const { ExternalLinkIcon, ClipboardCopyIcon } = icons;
 type Props = {
   urlDetail: Partial<IurlDetail>;
 };
@@ -24,10 +24,7 @@ const URLCard: FC<Props> = ({ urlDetail }) => {
         <span> {longUrl}</span>
       </p>
       <div className={created}>
-        <p data-testid="clicks">
-          <span> {visits} </span> <span> visits</span>
-        </p>
-        |
+        <p data-testid="clicks">{visits} visits</p>|
         <p data-testid="created">
           <span> Created: </span>
           <span> {timeAgo(new Date(createdAt as Date).getTime())}</span>
@@ -49,9 +46,6 @@ const URLCard: FC<Props> = ({ urlDetail }) => {
         <div role="button">
           <Tooltip id="copy" place="bottom" content="Copy to clickboard" />
           <ClipboardCopyIcon data-tooltip-id="copy" />
-        </div>
-        <div role="button">
-          <ShearIcon />
         </div>
       </div>
     </div>

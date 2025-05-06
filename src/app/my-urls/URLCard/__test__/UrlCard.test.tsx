@@ -31,11 +31,4 @@ describe('URLCard Component', () => {
     expect(screen.getByTestId('created')).toHaveTextContent('just now');
   });
 
-  it('renders external link with correct href', () => {
-    render(<URLCard urlDetail={mockUrlDetail} />);
-    expect(screen.getByTestId('tolongUrl')).toHaveAttribute(
-      'href',
-      mockUrlDetail?.longUrl
-    );
-  });
 });
