@@ -8,7 +8,7 @@ type Props = {
     id: string;
   }>;
 };
-export const GET = async (_:NextRequest, props: Props) => {
+export const GET = async (_: NextRequest, props: Props) => {
   try {
     const { id } = await props.params;
     if (!id) {
@@ -21,12 +21,12 @@ export const GET = async (_:NextRequest, props: Props) => {
         }
       );
     }
-    const decoded = decodeBase62(id);
+    const decoded = parseInt(decodeBase62(id));
 
     const url = await db.urls.findUnique({
       select: {
         visits: true,
-        createdAt:true
+        createdAt: true,
       },
 
       where: {
@@ -34,17 +34,16 @@ export const GET = async (_:NextRequest, props: Props) => {
       },
     });
 
-    
     if (!url) {
-        return NextResponse.json(
-          {
-            message: 'Not found',
-          },
-          {
-            status: 404,
-          }
-        );
-      }
+      return NextResponse.json(
+        {
+          message: 'Not found',
+        },
+        {
+          status: 404,
+        }
+      );
+    }
     return NextResponse.json({
       urlStats: url,
       success: true,

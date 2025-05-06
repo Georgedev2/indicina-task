@@ -27,7 +27,7 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-## 1. POST http://localhost:3000/api/encode
+###  1. POST http://localhost:3000/api/encode
 `` 
 Content-Type: application/json
 ``
@@ -51,7 +51,7 @@ Content-Type: application/json
 }
 ```
 
-## 2. POST http://localhost:3000/api/decode
+### 2. POST http://localhost:3000/api/decode
 `` 
 Content-Type: application/json
 ``
@@ -71,7 +71,7 @@ Content-Type: application/json
 }
 ```
 
-## 3. GET  http://localhost:3000/api/list
+### 3. GET  http://localhost:3000/api/list
 
 
 #### Response
@@ -98,26 +98,44 @@ Content-Type: application/json
 }   
 ```
 
-## 4. GET  http://localhost:3000/api/list?search=moviebox
+###  4. GET  http://localhost:3000/api/list?search=bamboohr
 
 #### Response
 
 ```bash
 {
-  "data":{
-      "longUrl": "https://moviebox.ng/movies/merlin-sMxCiIO6fZ9?id=8382755684005333552&scene=&page_from=search_detail&type=/movie/detail&utm_source=h5seo_www.google.com",
-      "shortUrl": "https://moviebox.ng/O",
-      "shortUrlId": "O",
-      "createdAt": "2025-05-05T13:45:41.862Z",
+  "data": [
+    {
+      "longUrl": "https://duplo.bamboohr.com/careers/110?utm_source=",
+      "shortUrl": "https://duplo.bamboohr.com/NDY",
+      "shortUrlId": "NDY",
+      "createdAt": "2025-05-06T18:15:59.773Z",
       "visits": 0
     }
-}   
+  ],
+  "success": true
+}  
 ```
 
-## 5. GET  GET  http://localhost:3000/api/C
+###  5. GET  GET  http://localhost:3000/api/NDg
 
 #### Response
 
 ```bash
 Redirected to the long URL  
+```
+
+
+###  6. GET  GET GET  http://localhost:3000/api/statistic/NDg
+
+#### Response
+
+```bash
+{
+  "urlStats": {
+    "visits": 3,
+    "createdAt": "2025-05-06T20:19:49.666Z"
+  },
+  "success": true
+} 
 ```

@@ -8,7 +8,7 @@ export const GET = async (request: NextRequest) => {
   try {
     const query = request?.nextUrl?.searchParams.get(SEARCH_KEY) || '';
     let urls;
-    if (query) {
+    if (query!=='') {
       urls = await db.urls.findMany({
         select: {
           longUrl: true,
@@ -17,15 +17,12 @@ export const GET = async (request: NextRequest) => {
           createdAt: true,
           visits: true,
         },
-        where: {
-          longUrl: {
-            contains: query,
-          },
-        },
         orderBy: {
           createdAt: 'desc',
         },
       });
+      
+
     }
 
     urls = await db.urls.findMany({
@@ -35,6 +32,11 @@ export const GET = async (request: NextRequest) => {
         shortUrlId: true,
         createdAt: true,
         visits: true,
+      },
+      where: {
+        longUrl: {
+          contains: query,
+        },
       },
       orderBy: {
         createdAt: 'desc',
