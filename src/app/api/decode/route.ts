@@ -19,13 +19,14 @@ export const POST = async (req: NextRequest) => {
 
     const { pathname } = new URL(body.shortUrl);
     const slug = pathname?.replaceAll('/', '');
-    const decoded = decodeBase62(slug);
+    const decoded =  parseInt(decodeBase62(slug));
+
     const url = await db.urls.findUnique({
       where: {
         id: decoded,
       },
     });
-    
+
     if (!url) {
       return NextResponse.json(
         {
@@ -36,7 +37,7 @@ export const POST = async (req: NextRequest) => {
         }
       );
     }
-    return NextResponse.json({ longUrl:url.longUrl, success: true });
+    return NextResponse.json({ longUrl: url.longUrl, success: true });
   } catch (error) {
     return NextResponse.json(get500ResponseBody(error as TCatchBlockError), {
       status: 500,

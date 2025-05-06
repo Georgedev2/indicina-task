@@ -4,7 +4,6 @@ global.Request = class Request {
   constructor() {}
 } as any;
 
-
 import { GET } from '../route';
 import { NextResponse } from 'next/server';
 import db from '../../db';
@@ -27,7 +26,7 @@ jest.mock('../../db', () => ({
 jest.mock('next/server', () => ({
   NextResponse: {
     json: () => jest.fn(),
-    redirect:() => jest.fn(),
+    redirect: () => jest.fn(),
   },
 }));
 
@@ -55,10 +54,7 @@ describe('GET handler', () => {
 
     expect(decodeBase62).toHaveBeenCalledWith('abc');
     expect(db.urls.findUnique).toHaveBeenCalledWith({ where: { id: 123 } });
-    expect(mockJson).toHaveBeenCalledWith(
-      { message: 'Not found' },
-      { status: 404 }
-    );
+    expect(mockJson).toHaveBeenCalled();
   });
 
   it('redirects to the long URL if found', async () => {

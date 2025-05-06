@@ -10,7 +10,6 @@ type Props = {
 };
 
 export const GET = async (_: NextRequest, prop: Props) => {
-
   try {
     const { shortUrlId } = await prop.params;
     if (!shortUrlId) {
@@ -23,14 +22,13 @@ export const GET = async (_: NextRequest, prop: Props) => {
         }
       );
     }
-    const decoded = decodeBase62(shortUrlId);
+    const decoded = parseInt(decodeBase62(shortUrlId));
 
     const url = await db.urls.findUnique({
       where: {
         id: decoded,
       },
     });
-    
 
     if (!url) {
       return NextResponse.json(
@@ -52,9 +50,8 @@ export const GET = async (_: NextRequest, prop: Props) => {
         },
       },
     });
-    
-    return NextResponse.redirect(url.longUrl)
 
+    return NextResponse.redirect(url.longUrl);
   } catch (error) {
     return NextResponse.json(get500ResponseBody(error as TCatchBlockError), {
       status: 500,

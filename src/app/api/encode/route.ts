@@ -23,7 +23,7 @@ export const POST = async (req: NextRequest) => {
         longUrl: href,
       },
     });
-    const encoded = encodeBase62(newUrl.id);
+    const encoded = encodeBase62(String(newUrl.id) );
 
     const updateUrl = await db.urls.update({
       where: {
