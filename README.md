@@ -50,3 +50,74 @@ Content-Type: application/json
   success: true
 }
 ```
+
+## 2. POST http://localhost:3000/api/decode
+`` 
+Content-Type: application/json
+``
+
+```bash
+{
+"shortUrl":"https://example.com/NDg"
+}
+```
+
+#### Response
+
+```bash
+{
+  "longUrl": "https://example.com/my/long/article?serach=k",
+  "success": true
+}
+```
+
+## 3. GET  http://localhost:3000/api/list
+
+
+#### Response
+
+```bash
+{
+  "data": [
+    {
+      "longUrl": "https://example.com/my/long/article?serach=k",
+      "shortUrl": "https://example.com/NDg",
+      "shortUrlId": "NDg",
+      "createdAt": "2025-05-06T20:19:49.666Z",
+      "visits": 0
+    },
+    {
+      "longUrl": "https://www.standardbank.com/sbg/standard-bank-group/careers/apply/jobs/view-all-jobs/job-detail?jobID=744000056709993",
+      "shortUrl": "https://www.standardbank.com/NDc",
+      "shortUrlId": "NDc",
+      "createdAt": "2025-05-06T18:18:27.055Z",
+      "visits": 1
+    }
+    ...
+    ]
+}   
+```
+
+## 4. GET  http://localhost:3000/api/list?search=moviebox
+
+#### Response
+
+```bash
+{
+  "data":{
+      "longUrl": "https://moviebox.ng/movies/merlin-sMxCiIO6fZ9?id=8382755684005333552&scene=&page_from=search_detail&type=/movie/detail&utm_source=h5seo_www.google.com",
+      "shortUrl": "https://moviebox.ng/O",
+      "shortUrlId": "O",
+      "createdAt": "2025-05-05T13:45:41.862Z",
+      "visits": 0
+    }
+}   
+```
+
+## 5. GET  GET  http://localhost:3000/api/C
+
+#### Response
+
+```bash
+Redirected to the long URL  
+```

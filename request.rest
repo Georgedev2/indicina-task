@@ -10,7 +10,7 @@ POST http://localhost:3000/api/decode
 Content-Type: application/json
 
 {
-"shortUrl":"https://example.com/B"
+"shortUrl":"https://example.com/NDg"
 }
 
 ###
@@ -18,10 +18,10 @@ GET  http://localhost:3000/api/list
 
 
 ###
-GET  http://localhost:3000/api/list?search=moviebox
+GET  http://localhost:3000/api/list?search=bamboohr
 
 ###
-GET  http://localhost:3000/api/C
+GET  http://localhost:3000/api/NDg
 
 ###
-GET  http://localhost:3000/api/statistic/m
+GET  http://localhost:3000/api/statistic/NDg
