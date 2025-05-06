@@ -41,7 +41,7 @@ Content-Type: application/json
 
 ## Response
 
-``
+```bash
 {
   urlDetail: {
     longUrl: 'https://example.com/my/long/article?serach=k',
@@ -50,4 +50,4 @@ Content-Type: application/json
   },
   success: true
 }
-``
+```
